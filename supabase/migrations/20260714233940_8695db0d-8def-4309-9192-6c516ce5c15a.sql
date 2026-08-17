@@ -1,0 +1,1 @@
+ALTER TABLE public.artworks ADD COLUMN IF NOT EXISTS mockups JSONB NOT NULL DEFAULT '{}'::jsonb;

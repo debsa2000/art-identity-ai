@@ -1,0 +1,2 @@
+CREATE POLICY "Admins read all artworks" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'artworks' AND (app_private.has_role(auth.uid(), 'admin'::app_role) OR app_private.has_role(auth.uid(), 'super_admin'::app_role)));
+CREATE POLICY "Admins read all avatars" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'avatars' AND (app_private.has_role(auth.uid(), 'admin'::app_role) OR app_private.has_role(auth.uid(), 'super_admin'::app_role)));

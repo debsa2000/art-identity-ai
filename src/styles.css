@@ -1,0 +1,241 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Art Identity AI — Futuristic blue/green dark theme
+   Palette: deep navy/charcoal, electric blue, emerald/teal
+   Type: Space Grotesk (body) + Cormorant Garamond (display serif retained for headings) */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-sans: "Space Grotesk", "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-bronze: var(--bronze);
+  --color-bronze-foreground: var(--bronze-foreground);
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-neon: var(--neon);
+  --color-emerald-glow: var(--emerald-glow);
+}
+
+:root {
+  --radius: 0.85rem;
+
+  /* Deep navy/charcoal base */
+  --ink: oklch(0.14 0.03 250);
+  --ivory: oklch(0.97 0.01 220);
+
+  /* Electric blue + emerald/teal accents */
+  --neon: oklch(0.72 0.18 230);            /* electric blue */
+  --emerald-glow: oklch(0.75 0.16 175);    /* emerald/teal */
+  --bronze: oklch(0.78 0.15 190);          /* legacy token remapped to teal-cyan */
+  --bronze-foreground: oklch(0.14 0.03 250);
+
+  --background: oklch(0.14 0.03 250);
+  --foreground: oklch(0.96 0.01 220);
+
+  --card: oklch(0.19 0.03 250 / 0.72);
+  --card-foreground: oklch(0.96 0.01 220);
+  --popover: oklch(0.18 0.03 250);
+  --popover-foreground: oklch(0.96 0.01 220);
+
+  --primary: oklch(0.72 0.18 230);
+  --primary-foreground: oklch(0.11 0.03 250);
+
+  --secondary: oklch(0.22 0.03 250);
+  --secondary-foreground: oklch(0.96 0.01 220);
+
+  --muted: oklch(0.22 0.03 250);
+  --muted-foreground: oklch(0.72 0.02 220);
+
+  --accent: var(--emerald-glow);
+  --accent-foreground: oklch(0.11 0.03 250);
+
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.32 0.04 230 / 0.55);
+  --input: oklch(0.28 0.04 240 / 0.6);
+  --ring: var(--neon);
+}
+
+.dark {
+  /* Same futuristic dark palette (site is dark by default) */
+  --background: oklch(0.12 0.03 250);
+  --foreground: oklch(0.97 0.01 220);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 700px at 10% -10%, color-mix(in oklab, var(--neon) 22%, transparent), transparent 60%),
+      radial-gradient(900px 600px at 110% 10%, color-mix(in oklab, var(--emerald-glow) 18%, transparent), transparent 60%),
+      radial-gradient(700px 500px at 50% 120%, color-mix(in oklab, var(--neon) 14%, transparent), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, .font-serif { font-family: var(--font-serif); letter-spacing: -0.01em; }
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1.5rem;
+}
+
+@utility hairline { border-top: 1px solid var(--color-border); }
+
+@utility bronze-link {
+  color: var(--color-emerald-glow);
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+  &:hover { text-decoration: underline; color: var(--color-neon); }
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--color-neon) 40%, transparent);
+  background: color-mix(in oklab, var(--color-card) 60%, transparent);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-foreground) 82%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 24px -8px color-mix(in oklab, var(--color-neon) 45%, transparent);
+}
+
+@utility chip-dot {
+  width: 6px; height: 6px; border-radius: 9999px;
+  background: var(--color-emerald-glow);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-emerald-glow) 25%, transparent),
+              0 0 12px color-mix(in oklab, var(--color-emerald-glow) 70%, transparent);
+}
+
+/* Glassmorphic card treatment applied globally to bg-card surfaces */
+@utility glass {
+  background: linear-gradient(140deg,
+    color-mix(in oklab, var(--color-card) 88%, transparent),
+    color-mix(in oklab, var(--color-card) 55%, transparent));
+  border: 1px solid color-mix(in oklab, var(--color-neon) 22%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 8%, transparent),
+    0 20px 60px -30px color-mix(in oklab, var(--color-neon) 55%, transparent);
+}
+
+@utility neon-border {
+  border: 1px solid color-mix(in oklab, var(--color-neon) 55%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--color-neon) 20%, transparent) inset,
+    0 0 24px -6px color-mix(in oklab, var(--color-neon) 60%, transparent);
+}
+
+@utility btn-neon {
+  background: linear-gradient(135deg, var(--color-neon), var(--color-emerald-glow));
+  color: oklch(0.11 0.03 250);
+  box-shadow:
+    0 10px 40px -10px color-mix(in oklab, var(--color-neon) 70%, transparent),
+    0 0 0 1px color-mix(in oklab, white 20%, transparent) inset;
+  transition: transform .15s ease, box-shadow .2s ease;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 14px 46px -8px color-mix(in oklab, var(--color-emerald-glow) 80%, transparent),
+      0 0 0 1px color-mix(in oklab, white 28%, transparent) inset;
+  }
+}
+
+/* Make every card feel glassy without touching each component */
+.bg-card {
+  background: linear-gradient(140deg,
+    color-mix(in oklab, var(--color-card) 92%, transparent),
+    color-mix(in oklab, var(--color-card) 55%, transparent)) !important;
+  backdrop-filter: blur(14px) saturate(140%);
+  border-color: color-mix(in oklab, var(--color-neon) 22%, transparent) !important;
+}
+
+/* Painterly / atmospheric blobs — now electric */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  animation: drift 22s ease-in-out infinite;
+}
+.blob-a { width: 560px; height: 560px; left: -120px; top: -80px;
+  background: radial-gradient(circle at 30% 30%, oklch(0.7 0.2 230), transparent 65%); }
+.blob-b { width: 480px; height: 480px; right: -100px; top: 120px;
+  background: radial-gradient(circle at 60% 40%, oklch(0.72 0.18 175), transparent 65%);
+  animation-delay: -7s; }
+.blob-c { width: 620px; height: 620px; left: 20%; top: 520px;
+  background: radial-gradient(circle at 50% 50%, oklch(0.6 0.2 210), transparent 65%);
+  animation-delay: -14s; }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(40px,-30px) scale(1.08); }
+  66% { transform: translate(-30px,25px) scale(0.95); }
+}
+
+.grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.4'/></svg>");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+.float-y { animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0)); }
+  50% { transform: translateY(-10px) rotate(var(--tw-rotate, 0)); }
+}
+
+/* Soft pulsing glow, used for Aria bubble */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-neon) 60%, transparent), 0 0 40px -4px color-mix(in oklab, var(--color-emerald-glow) 50%, transparent); }
+  50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--color-neon) 0%, transparent), 0 0 56px 4px color-mix(in oklab, var(--color-emerald-glow) 70%, transparent); }
+}
+.pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+/* text-bronze alias remains but now renders as teal */
+.text-bronze { color: var(--color-emerald-glow) !important; }
+.bg-bronze { background-color: var(--color-neon) !important; }
+.border-bronze { border-color: var(--color-neon) !important; }
+.hover\:border-bronze:hover { border-color: color-mix(in oklab, var(--color-neon) 70%, transparent) !important; }

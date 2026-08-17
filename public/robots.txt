@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /artworks
+Disallow: /studio
+Disallow: /website
+Disallow: /portfolio
+Disallow: /inquiries
+Disallow: /analytics
+Disallow: /settings
+Disallow: /admin

@@ -1,0 +1,2 @@
+REVOKE EXECUTE ON FUNCTION app_private.has_role(uuid, public.app_role) FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.has_approved_application(uuid) FROM PUBLIC, anon, authenticated;
